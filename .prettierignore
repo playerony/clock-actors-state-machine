@@ -1,0 +1,17 @@
+*.png
+*.txt
+*.ttf
+*.ico
+*.woff
+*.woff2
+
+dist
+.husky
+scripts
+coverage
+.DS_Store
+yarn.lock
+.gitignore
+.eslintcache
+.lintstagedrc
+.prettierignore
