@@ -1,10 +1,10 @@
 {
-  "name": "react-javascript-boilerplate",
+  "name": "clock-actors-state-machine",
   "version": "1.0.0",
   "description": "Minimal javascript boilerplate for React apps",
   "license": "MIT",
   "author": "Paweł Wojtasiński <pawel.wojtasinski.1995@gmail.com>",
-  "repository": "git@github.com:playerony/react-javascript-boilerplate.git",
+  "repository": "git@github.com:playerony/clock-actors-state-machine.git",
   "scripts": {
     "build": "yarn build:clean && yarn build:dist",
     "build:clean": "rimraf dist",

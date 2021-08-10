@@ -1,12 +1,12 @@
-# React Javascript Boilerplate
+# Clock actors state machine
 
-![Lint](https://github.com/playerony/react-javascript-boilerplate/workflows/lint/badge.svg)
-![Test](https://github.com/playerony/react-javascript-boilerplate/workflows/test/badge.svg)
-![Build](https://github.com/playerony/react-javascript-boilerplate/workflows/build/badge.svg)
-![Prettier](https://github.com/playerony/react-javascript-boilerplate/workflows/prettier/badge.svg)
-![Commitlint](https://github.com/playerony/react-javascript-boilerplate/workflows/commitlint/badge.svg)
+![Lint](https://github.com/playerony/clock-actors-state-machine/workflows/lint/badge.svg)
+![Test](https://github.com/playerony/clock-actors-state-machine/workflows/test/badge.svg)
+![Build](https://github.com/playerony/clock-actors-state-machine/workflows/build/badge.svg)
+![Prettier](https://github.com/playerony/clock-actors-state-machine/workflows/prettier/badge.svg)
+![Commitlint](https://github.com/playerony/clock-actors-state-machine/workflows/commitlint/badge.svg)
 
-Minimal javascript boilerplate for React apps.
+Advanced clock logic written with state machines for the purpose of learning actors.
 
 ## 📖 Table of Contents
 
@@ -34,8 +34,8 @@ You need to have installed the following software:
 ### Bootstrap
 
 ```bash
-  git clone --depth 1 https://github.com/playerony/react-javascript-boilerplate my-app
-  cd my-app
+  git clone https://github.com/playerony/clock-actors-state-machine
+  cd clock-actors-state-machine
   yarn install
 ```
 
