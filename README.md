@@ -1,10 +1,10 @@
 # Clock actors state machine
 
-![Lint](https://github.com/playerony/react-javascript-boilerplate/workflows/lint/badge.svg)
-![Test](https://github.com/playerony/react-javascript-boilerplate/workflows/test/badge.svg)
-![Build](https://github.com/playerony/react-javascript-boilerplate/workflows/build/badge.svg)
-![Prettier](https://github.com/playerony/react-javascript-boilerplate/workflows/prettier/badge.svg)
-![Commitlint](https://github.com/playerony/react-javascript-boilerplate/workflows/commitlint/badge.svg)
+![Lint](https://github.com/playerony/clock-actors-state-machine/workflows/lint/badge.svg)
+![Test](https://github.com/playerony/clock-actors-state-machine/workflows/test/badge.svg)
+![Build](https://github.com/playerony/clock-actors-state-machine/workflows/build/badge.svg)
+![Prettier](https://github.com/playerony/clock-actors-state-machine/workflows/prettier/badge.svg)
+![Commitlint](https://github.com/playerony/clock-actors-state-machine/workflows/commitlint/badge.svg)
 
 Advanced clock logic written with state machines for the purpose of learning actors.
 
