@@ -16,6 +16,15 @@ html,
   background-color: #f4f5f7;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5 {
+  margin: 0;
+  padding: 0;
+}
+
 .title {
   text-align: center;
 }
