@@ -1,5 +1,5 @@
 :root {
-  --label-size: 20px;
+  --label-size: 40px;
   --clock-radius: 300px;
   --seconds-thickness: 4px;
   --center-dot-radius: 10px;
@@ -35,8 +35,10 @@
 .labels-horizontal::before,
 .labels-vertical::after,
 .labels-vertical::before {
-  text-align: center;
+  display: flex;
   position: absolute;
+  align-items: center;
+  justify-content: center;
   width: var(--label-size);
   height: var(--label-size);
 }
@@ -47,12 +49,12 @@
 }
 
 .labels-horizontal::before {
-  content: '9';
+  content: '75%';
   left: calc(var(--clock-radius) / 15);
 }
 
 .labels-horizontal::after {
-  content: '3';
+  content: '25%';
   right: calc(var(--clock-radius) / 15);
 }
 
@@ -62,32 +64,28 @@
 }
 
 .labels-vertical::before {
-  content: '12';
-  top: calc(var(--clock-radius) / 15);
+  content: '100%';
 }
 
 .labels-vertical::after {
-  content: '6';
-  top: calc((var(--clock-radius) * 2) - (var(--clock-radius) / 7));
+  content: '50%';
+  top: calc((var(--clock-radius) * 2) - (var(--clock-radius) / 8));
 }
 
 .seconds {
-  height: 40%;
+  height: 50%;
   position: absolute;
   background-color: black;
   top: var(--clock-radius);
   transform-origin: top center;
   width: var(--seconds-thickness);
-  border-radius: var(--seconds-thickness);
-  animation: seconds-rotation 7200ms linear infinite;
+  transform: rotate(calc(var(--degree) * 1deg + 180deg));
   left: calc(var(--clock-radius) - var(--seconds-thickness) / 2);
 }
 
-@keyframes seconds-rotation {
-  from {
-    transform: rotate(-180deg);
-  }
-  to {
-    transform: rotate(180deg);
-  }
+.progress {
+  position: absolute;
+  left: var(--clock-radius);
+  top: calc(var(--clock-radius) * 1.5);
+  transform: translateX(-50%) translateY(-50%);
 }
