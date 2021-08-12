@@ -79,6 +79,7 @@
   top: var(--clock-radius);
   transform-origin: top center;
   width: var(--seconds-thickness);
+  transition: transform 100ms linear;
   transform: rotate(calc(var(--degree) * 1deg + 180deg));
   left: calc(var(--clock-radius) - var(--seconds-thickness) / 2);
 }
