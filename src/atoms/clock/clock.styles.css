@@ -1,7 +1,7 @@
 :root {
   --label-size: 40px;
   --clock-radius: 300px;
-  --seconds-thickness: 4px;
+  --seconds-thickness: 2px;
   --center-dot-radius: 10px;
 }
 
@@ -10,9 +10,9 @@
   font-size: 20px;
   position: relative;
   border-radius: 100%;
-  background-color: white;
-  border: 5px solid black;
   box-sizing: content-box;
+  border: 5px solid #a49694;
+  background-color: transparent;
   width: calc(var(--clock-radius) * 2);
   height: calc(var(--clock-radius) * 2);
 }
@@ -27,7 +27,7 @@
   content: '';
   z-index: 10;
   position: absolute;
-  background-color: red;
+  background-color: #a33b20;
   border-radius: var(--center-dot-radius);
   width: calc(var(--center-dot-radius) * 2);
   height: calc(var(--center-dot-radius) * 2);
@@ -40,6 +40,7 @@
 .labels-vertical::after,
 .labels-vertical::before {
   display: flex;
+  color: #172121;
   position: absolute;
   align-items: center;
   justify-content: center;
@@ -54,12 +55,12 @@
 
 .labels-horizontal::before {
   content: '75%';
-  left: calc(var(--clock-radius) / 15);
+  left: calc(var(--clock-radius) / 25);
 }
 
 .labels-horizontal::after {
   content: '25%';
-  right: calc(var(--clock-radius) / 15);
+  right: calc(var(--clock-radius) / 25);
 }
 
 .labels-vertical::before,
@@ -77,10 +78,10 @@
 }
 
 .seconds {
-  height: 50%;
+  height: 35%;
   position: absolute;
-  background-color: black;
   top: var(--clock-radius);
+  background-color: #a49694;
   transform-origin: top center;
   width: var(--seconds-thickness);
   transition: transform 100ms linear;
@@ -89,6 +90,7 @@
 }
 
 .progress {
+  color: #172121;
   position: absolute;
   left: var(--clock-radius);
   top: calc(var(--clock-radius) * 1.5);
