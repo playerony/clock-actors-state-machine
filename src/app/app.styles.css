@@ -13,7 +13,7 @@ html,
   height: 100%;
   font-size: 16px;
   font-weight: 400;
-  background-color: #e2e1e0;
+  background-color: #7f7b82;
 }
 
 h1,
@@ -37,12 +37,24 @@ h5 {
   height: 95%;
   width: 800px;
   padding: 40px;
+  display: flex;
+  align-items: center;
   border-radius: 10px;
-  background-color: white;
+  flex-direction: column;
+  background-color: #dbdbdb;
+  justify-content: space-between;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
 .clock-wrapper {
   display: flex;
   align-items: center;
+}
+
+.clock-wrapper > div:last-child {
+  margin-left: 20px;
+}
+
+.footer > button {
+  margin: 0 4rem;
 }
