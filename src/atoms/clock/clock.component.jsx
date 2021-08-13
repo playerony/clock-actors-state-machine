@@ -1,14 +1,12 @@
 import React from 'react';
-import { useMachine } from '@xstate/react';
+import { useService } from '@xstate/react';
 
 import cls from './clock.styles.css';
 
-import { timerMachine } from '../../machines';
+export const Clock = ({ clockRef, ...restProps }) => {
+  const [state] = useService(clockRef);
 
-export const Clock = () => {
-  const [state] = useMachine(timerMachine);
-
-  const { elapsed, duration } = state.context;
+  const { duration, elapsed } = state.context;
 
   const progress = elapsed / duration;
   const progressDegree = progress * 360;
@@ -16,7 +14,7 @@ export const Clock = () => {
   const formattedProgress = percentageProgress.toFixed(1);
 
   return (
-    <div className={cls.clock}>
+    <div className={cls.clock} {...restProps}>
       <div
         className={cls.seconds}
         style={{
