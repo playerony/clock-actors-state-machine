@@ -1,5 +1,8 @@
 import React from 'react';
+import classnames from 'classnames';
 
 import cls from './button.styles.css';
 
-export const Button = (props) => <button className={cls.button} {...props} />;
+export const Button = ({ className, ...restProps }) => (
+  <button {...restProps} className={classnames(cls.button, className)} />
+);

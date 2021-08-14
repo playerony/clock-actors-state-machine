@@ -1,7 +1,7 @@
 import React from 'react';
 import { useMachine } from '@xstate/react';
 
-import { Dots, Clock, Button } from '../atoms';
+import { Dots, Clock, Button, BigHeading } from '../atoms';
 
 import { appMachine } from '../machines';
 
@@ -12,13 +12,18 @@ export const App = () => {
 
   const { clocks, currentClock } = state.context;
 
-  const renderClocks = () =>
-    React.Children.toArray(
+  const renderClocks = () => {
+    if (!clocks.length) {
+      return <BigHeading>Please add a new clock</BigHeading>;
+    }
+
+    return React.Children.toArray(
       clocks.map((_clockRef, index) => (
         // eslint-disable-next-line react/jsx-key
         <Clock data-active={index === currentClock} clockRef={_clockRef} />
       )),
     );
+  };
 
   const onDotClick = (index) => send({ type: 'SWITCH', index });
 
@@ -35,6 +40,7 @@ export const App = () => {
             onDotClick={onDotClick}
             amountOfDots={clocks.length}
             activeDotIndex={currentClock}
+            className={cls['dots-margin']}
           />
         </section>
         <footer className={cls.footer}>

@@ -11,6 +11,7 @@ html,
   padding: 0;
   width: 100%;
   height: 100%;
+  color: #172121;
   font-size: 16px;
   font-weight: 400;
   background-color: #7f7b82;
@@ -51,7 +52,7 @@ h5 {
   align-items: center;
 }
 
-.clock-wrapper > div:last-child {
+.dots-margin {
   margin-left: 20px;
 }
 
