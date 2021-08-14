@@ -40,6 +40,7 @@ export const App = () => {
             onDotClick={onDotClick}
             amountOfDots={clocks.length}
             activeDotIndex={currentClock}
+            className={cls['dots-margin']}
           />
         </section>
         <footer className={cls.footer}>
