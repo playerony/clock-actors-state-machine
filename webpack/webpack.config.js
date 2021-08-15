@@ -25,6 +25,12 @@ module.exports = ({ mode = defaultEnvironmentVariables.mode } = defaultEnvironme
         chunkFilename: '[name].[contenthash].js',
       },
       resolve: {
+        alias: {
+          '@ui': path.resolve(__dirname, '../src/ui'),
+          '@app': path.resolve(__dirname, '../src/app'),
+          '@utils': path.resolve(__dirname, '../src/utils'),
+          '@machines': path.resolve(__dirname, '../src/machines'),
+        },
         extensions: ['.js', '.jsx'],
       },
       module: {
