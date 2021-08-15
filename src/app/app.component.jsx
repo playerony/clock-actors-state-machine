@@ -1,7 +1,7 @@
 import React from 'react';
 import { useMachine } from '@xstate/react';
 
-import { Dots, Clock, Button, BigHeading } from '../atoms';
+import { Dots, Timer, Button, BigHeading, HorizontalButtonsWrapper } from '@ui';
 
 import { appMachine } from '../machines';
 
@@ -20,7 +20,7 @@ export const App = () => {
     return React.Children.toArray(
       clocks.map((_clockRef, index) => (
         // eslint-disable-next-line react/jsx-key
-        <Clock data-active={index === currentClock} clockRef={_clockRef} />
+        <Timer isActive={index === currentClock} timerRef={_clockRef} />
       )),
     );
   };
@@ -43,10 +43,12 @@ export const App = () => {
             className={cls['dots-margin']}
           />
         </section>
-        <footer className={cls.footer}>
+        <HorizontalButtonsWrapper>
           <Button onClick={addClock}>Add clock</Button>
-          {currentClock > -1 ? <Button onClick={deleteClock}>Delete clock</Button> : null}
-        </footer>
+          <Button onClick={deleteClock} disabled={currentClock === -1}>
+            Delete clock
+          </Button>
+        </HorizontalButtonsWrapper>
       </div>
     </main>
   );

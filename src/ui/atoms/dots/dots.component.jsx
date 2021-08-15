@@ -8,12 +8,12 @@ const getArrayWithNElements = (amountOfElements) => Array.from(Array(amountOfEle
 export const Dots = ({ className, onDotClick, amountOfDots, activeDotIndex }) => (
   <div className={classnames(cls.dots, className)} data-hidden={amountOfDots <= 1}>
     {React.Children.toArray(
-      getArrayWithNElements(amountOfDots).map((value) => (
+      getArrayWithNElements(amountOfDots).map((_value) => (
         // eslint-disable-next-line react/jsx-key
         <div
           className={cls.dot}
-          onClick={() => onDotClick(value)}
-          data-active={value === activeDotIndex}
+          onClick={() => onDotClick(_value)}
+          data-active={_value === activeDotIndex}
         />
       )),
     )}

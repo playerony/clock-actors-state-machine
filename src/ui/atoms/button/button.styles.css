@@ -7,6 +7,7 @@
   padding: 20px 30px;
   border-radius: 5px;
   background-color: #b0b5b3;
+  transition: all 300ms ease-in;
 }
 
 .button::after {
@@ -21,4 +22,14 @@
 
 .button:hover::after {
   transform: scale(1);
+}
+
+.button:disabled {
+  color: #b0b5b3;
+  cursor: not-allowed;
+  background-color: #8d918b;
+}
+
+.button:disabled:hover::after {
+  transform: scale(0);
 }
