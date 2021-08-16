@@ -1,54 +1,56 @@
 import React from 'react';
 import { useMachine } from '@xstate/react';
 
-import { Dots, Timer, Button, BigHeading, HorizontalButtonsWrapper } from '@ui';
-
-import { appMachine } from '../machines';
+import { appMachine } from '@machines';
+import { Dots, Timer, Button, NewTimerForm, HorizontalButtonsWrapper } from '@ui';
 
 import cls from './app.styles.css';
 
 export const App = () => {
   const [state, send] = useMachine(appMachine);
 
-  const { clocks, currentClock } = state.context;
-
-  const renderClocks = () => {
-    if (!clocks.length) {
-      return <BigHeading>Please add a new clock</BigHeading>;
-    }
-
-    return React.Children.toArray(
-      clocks.map((_clockRef, index) => (
-        // eslint-disable-next-line react/jsx-key
-        <Timer isActive={index === currentClock} timerRef={_clockRef} />
-      )),
-    );
-  };
+  const { timers, currentTimer } = state.context;
 
   const onDotClick = (index) => send({ type: 'SWITCH', index });
 
-  const addClock = () => send({ type: 'CREATE', duration: 15 });
+  const addClock = () => send('CREATE');
 
   const deleteClock = () => send('DELETE');
 
+  const onSubmit = (duration) => send({ type: 'ADD', duration });
+
+  const onCancel = () => {
+    if (timers.length) {
+      send('CANCEL');
+    }
+  };
+
   return (
     <main className={cls.app}>
-      <div className={cls['content-wrapper']}>
+      <div className={cls['content-wrapper']} data-hidden={!state.matches('timer')}>
         <section className={cls['clock-wrapper']}>
-          {renderClocks()}
+          {React.Children.toArray(
+            timers.map((_timerRef, index) => (
+              // eslint-disable-next-line react/jsx-key
+              <Timer isActive={index === currentTimer} timerRef={_timerRef} />
+            )),
+          )}
           <Dots
             onDotClick={onDotClick}
-            amountOfDots={clocks.length}
-            activeDotIndex={currentClock}
+            amountOfDots={timers.length}
+            activeDotIndex={currentTimer}
             className={cls['dots-margin']}
           />
         </section>
         <HorizontalButtonsWrapper>
           <Button onClick={addClock}>Add clock</Button>
-          <Button onClick={deleteClock} disabled={currentClock === -1}>
+          <Button onClick={deleteClock} disabled={currentTimer === -1}>
             Delete clock
           </Button>
         </HorizontalButtonsWrapper>
+      </div>
+      <div className={cls['content-wrapper']} data-hidden={state.matches('timer')}>
+        <NewTimerForm onSubmit={onSubmit} onCancel={onCancel} key={state.toStrings().join(' ')} />
       </div>
     </main>
   );

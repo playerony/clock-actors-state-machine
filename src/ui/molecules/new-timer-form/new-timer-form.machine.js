@@ -10,7 +10,9 @@ export const newTimerFormMachine = createMachine(
       active: {
         on: {
           change: {
-            actions: 'assignDuration',
+            actions: assign({
+              duration: (_, event) => +event.target.value,
+            }),
           },
           submit: {
             actions: 'submit',
@@ -21,13 +23,9 @@ export const newTimerFormMachine = createMachine(
     },
   },
   {
-    actions: {
-      assignDuration: assign({
-        duration: (_, event) => +event.target.duration,
-      }),
-    },
     guards: {
-      isValidDuration: (context) => !isNaN(context.duration) && context.duration > 0,
+      isValidDuration: (context) =>
+        !isNaN(context.duration) && context.duration > 0 && context.duration <= 360,
     },
   },
 );

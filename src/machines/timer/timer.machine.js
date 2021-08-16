@@ -11,29 +11,64 @@ export const createTimerMachine = (duration) =>
         interval: 0.1,
       },
       states: {
-        running: {
-          always: {
-            target: 'overflow',
-            cond: 'didTimeOverflow',
+        idle: {
+          entry: assign({
+            duration,
+            elapsed: 0,
+          }),
+          on: {
+            RESET: undefined,
+            TOGGLE: 'running',
           },
+        },
+        running: {
           invoke: {
             src: 'ticker',
+          },
+          initial: 'normal',
+          states: {
+            normal: {
+              always: {
+                target: 'overtime',
+                cond: 'timerExpired',
+              },
+              on: {
+                RESET: undefined,
+              },
+            },
+            overtime: {
+              on: {
+                TOGGLE: undefined,
+              },
+            },
           },
           on: {
             TICK: {
               actions: 'tick',
             },
+            ADD_MINUTE: {
+              actions: 'addMinute',
+            },
+            TOGGLE: 'paused',
           },
         },
-        overflow: {
-          type: 'final',
+        paused: {
+          on: {
+            TOGGLE: 'running',
+          },
         },
+      },
+      on: {
+        RESET: '.idle',
       },
     },
     {
       actions: {
         tick: assign({
           elapsed: (context) => context.elapsed + context.interval,
+        }),
+        addMinute: assign({
+          duration: (context) => context.duration + 60,
         }),
       },
       services: {
@@ -44,7 +79,7 @@ export const createTimerMachine = (duration) =>
         },
       },
       guards: {
-        didTimeOverflow: (context) => context.elapsed > context.duration,
+        timerExpired: (context) => context.elapsed >= context.duration,
       },
     },
   );
