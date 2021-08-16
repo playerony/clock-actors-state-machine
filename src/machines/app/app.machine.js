@@ -4,56 +4,74 @@ import { createTimerMachine } from '..';
 
 export const appMachine = createMachine(
   {
-    initial: 'idle',
+    initial: 'new',
     context: {
-      clocks: [],
-      currentClock: -1,
+      timers: [],
+      currentTimer: -1,
     },
     states: {
-      idle: {
+      new: {
         on: {
-          CREATE: {
-            actions: 'spawnNewClock',
-            cond: 'didClocksLimitReached',
-          },
-          DELETE: {
-            actions: 'deleteCurrentClock',
-          },
-          SWITCH: {
-            actions: 'switchClock',
+          CANCEL: {
+            target: 'timer',
+            cond: 'hasMoreThanZeroTimers',
           },
         },
+      },
+      timer: {
+        on: {
+          DELETE: {
+            target: 'deleting',
+            actions: 'deleteCurrentTimer',
+          },
+        },
+      },
+      deleting: {
+        always: [{ target: 'new', cond: 'hasZeroTimers' }, { target: 'timer' }],
+      },
+    },
+    on: {
+      ADD: {
+        target: 'timer',
+        actions: 'spawnNewTimer',
+        cond: 'didTimersLimitReached',
+      },
+      CREATE: 'new',
+      SWITCH: {
+        actions: 'switchTimer',
       },
     },
   },
   {
     actions: {
-      switchClock: assign({
-        currentClock: (_, event) => event.index,
+      switchTimer: assign({
+        currentTimer: (_, event) => event.index,
       }),
-      spawnNewClock: assign((context, event) => {
-        const newClock = spawn(createTimerMachine(event.duration));
+      spawnNewTimer: assign((context, event) => {
+        const newTimer = spawn(createTimerMachine(event.duration));
 
-        const clocks = context.clocks.concat(newClock);
-        const currentClock = clocks.length - 1;
+        const timers = context.timers.concat(newTimer);
+        const currentTimer = timers.length - 1;
 
         return {
-          clocks,
-          currentClock,
+          timers,
+          currentTimer,
         };
       }),
-      deleteCurrentClock: assign((context) => {
-        const clocks = context.clocks.filter((_, index) => index !== context.currentClock);
-        const currentClock = clocks.length - 1;
+      deleteCurrentTimer: assign((context) => {
+        const timers = context.timers.filter((_, index) => index !== context.currentTimer);
+        const currentTimer = timers.length - 1;
 
         return {
-          clocks,
-          currentClock,
+          timers,
+          currentTimer,
         };
       }),
     },
     guards: {
-      didClocksLimitReached: (context) => context.clocks.length < 25,
+      hasZeroTimers: (context) => context.timers.length === 0,
+      hasMoreThanZeroTimers: (context) => context.timers.length > 0,
+      didTimersLimitReached: (context) => context.timers.length < 25,
     },
   },
 );

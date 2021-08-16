@@ -4,6 +4,8 @@ import React, { useRef, useEffect } from 'react';
 import { Input, Button, HorizontalButtonsWrapper } from '@ui';
 import { newTimerFormMachine } from './new-timer-form.machine';
 
+import cls from './new-timer-form.styles.css';
+
 export const NewTimerForm = ({ onCancel, onSubmit }) => {
   const inputRef = useRef();
 
@@ -26,7 +28,7 @@ export const NewTimerForm = ({ onCancel, onSubmit }) => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className={cls.form}>
       <Input
         min={0}
         step={1}
@@ -38,7 +40,10 @@ export const NewTimerForm = ({ onCancel, onSubmit }) => {
       />
       <HorizontalButtonsWrapper>
         <Button onClick={onCancel}>Cancel</Button>
-        <Button type="submit" disabled={duration <= 0}>{`Start ${duration}-second timer`}</Button>
+        <Button
+          type="submit"
+          disabled={duration <= 1 || duration > 360}
+        >{`Start ${duration}-second timer`}</Button>
       </HorizontalButtonsWrapper>
     </form>
   );
