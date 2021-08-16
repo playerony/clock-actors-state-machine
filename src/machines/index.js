@@ -1,2 +1,2 @@
-export * from './app/app.machine';
-export * from './timer/timer.machine';
+export * from './app.machine';
+export * from './timer.machine';

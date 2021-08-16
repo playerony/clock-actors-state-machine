@@ -13,6 +13,7 @@ export const Timer = ({ timerRef, isActive }) => {
   return (
     <div className={cls.wrapper} data-active={isActive}>
       <Clock duration={duration} elapsed={elapsed} />
+
       <HorizontalButtonsWrapper>
         {state.matches({ running: 'normal' }) && (
           <Button onClick={() => send('ADD_MINUTE')}>+ 1:00</Button>

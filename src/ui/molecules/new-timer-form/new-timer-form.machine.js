@@ -3,6 +3,7 @@ import { assign, createMachine } from 'xstate';
 export const newTimerFormMachine = createMachine(
   {
     initial: 'active',
+    id: 'new-timer-form',
     context: {
       duration: 0,
     },
