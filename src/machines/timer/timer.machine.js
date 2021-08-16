@@ -4,7 +4,7 @@ export const createTimerMachine = (duration) =>
   createMachine(
     {
       id: 'timer',
-      initial: 'running',
+      initial: 'idle',
       context: {
         duration,
         elapsed: 0,

@@ -32,7 +32,7 @@ export const App = () => {
           {React.Children.toArray(
             timers.map((_timerRef, index) => (
               // eslint-disable-next-line react/jsx-key
-              <Timer isActive={index === currentTimer} timerRef={_timerRef} />
+              <Timer timerRef={_timerRef} isActive={index === currentTimer} />
             )),
           )}
           <Dots
