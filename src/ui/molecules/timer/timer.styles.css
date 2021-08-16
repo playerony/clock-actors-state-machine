@@ -1,0 +1,12 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.wrapper[data-active='false'] {
+  display: none;
+}
+
+.wrapper > *:first-child {
+  margin-bottom: 40px;
+}
