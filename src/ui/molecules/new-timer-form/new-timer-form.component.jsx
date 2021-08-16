@@ -43,7 +43,7 @@ export const NewTimerForm = ({ onCancel, onSubmit }) => {
         <Button
           type="submit"
           disabled={duration <= 1 || duration > 360}
-        >{`Start ${duration}-second timer`}</Button>
+        >{`Add ${duration}-second timer`}</Button>
       </HorizontalButtonsWrapper>
     </form>
   );

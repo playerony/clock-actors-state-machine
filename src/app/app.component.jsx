@@ -13,7 +13,7 @@ export const App = () => {
 
   const onDotClick = (index) => send({ type: 'SWITCH', index });
 
-  const addClock = () => send('CREATE');
+  const createClock = () => send('CREATE');
 
   const deleteClock = () => send('DELETE');
 
@@ -43,7 +43,7 @@ export const App = () => {
           />
         </section>
         <HorizontalButtonsWrapper>
-          <Button onClick={addClock}>Add clock</Button>
+          <Button onClick={createClock}>Create clock</Button>
           <Button onClick={deleteClock} disabled={currentTimer === -1}>
             Delete clock
           </Button>

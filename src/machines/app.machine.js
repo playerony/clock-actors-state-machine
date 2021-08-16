@@ -1,9 +1,10 @@
 import { spawn, assign, createMachine } from 'xstate';
 
-import { createTimerMachine } from '..';
+import { createTimerMachine } from '.';
 
 export const appMachine = createMachine(
   {
+    id: 'app',
     initial: 'new',
     context: {
       timers: [],
